@@ -1,22 +1,23 @@
+const API_URL = "https://tiendahost-production.up.railway.app/";
+
 document.addEventListener("DOMContentLoaded", () => {
     cargarProductos();
 });
 
-
 function cargarProductos() {
-    fetch("/productos") // MISMA URL DEL BACKEND
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Error HTTP: " + response.status);
+    fetch(`${API_URL}/productos`)
+        .then(res => {
+            if (!res.ok) {
+                throw new Error("Error HTTP: " + res.status);
             }
-            return response.json();
+            return res.json();
         })
         .then(data => {
             console.log("Productos recibidos:", data);
             mostrarProductos(data);
         })
-        .catch(error => {
-            console.error("Error al cargar productos:", error);
+        .catch(err => {
+            console.error("Error:", err);
             alert("No se pudieron cargar los productos");
         });
 }
@@ -47,6 +48,6 @@ function mostrarProductos(productos) {
     });
 }
 
-function agregarAlCarrito(idProducto) {
-    alert("Producto agregado al carrito (ID: " + idProducto + ")");
+function agregarAlCarrito(id) {
+    alert("Producto agregado (ID: " + id + ")");
 }
