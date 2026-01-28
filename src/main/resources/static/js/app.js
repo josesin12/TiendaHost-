@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     cargarProductos();
 });
 
+
 function cargarProductos() {
     fetch("/productos") // MISMA URL DEL BACKEND
         .then(response => {
