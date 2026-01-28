@@ -1,4 +1,4 @@
-const API_URL = "https://tiendahost-production.up.railway.app/";
+const API_URL = "https://tiendahost-production.up.railway.app";
 
 document.addEventListener("DOMContentLoaded", () => {
     cargarProductos();
