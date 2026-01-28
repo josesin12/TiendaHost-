@@ -6,10 +6,10 @@ import com.tienda.backend.repository.ProductoRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/productos")
-@CrossOrigin(origins = "*") // permite frontend simple
+// permite frontend simple
 public class ProductoController {
 
     private final ProductoRepository repo;

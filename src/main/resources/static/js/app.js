@@ -1,4 +1,4 @@
-const API_URL = "https://tiendahost-production.up.railway.app";
+const API_URL = "https://tiendahost-production-2383.up.railway.app";
 
 document.addEventListener("DOMContentLoaded", () => {
     cargarProductos();
@@ -6,18 +6,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function cargarProductos() {
     fetch(`${API_URL}/productos`)
-        .then(res => {
-            if (!res.ok) {
-                throw new Error("Error HTTP: " + res.status);
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Error HTTP: " + response.status);
             }
-            return res.json();
+            return response.json();
         })
-        .then(data => {
-            console.log("Productos recibidos:", data);
-            mostrarProductos(data);
+        .then(productos => {
+            console.log("Productos recibidos:", productos);
+            mostrarProductos(productos);
         })
-        .catch(err => {
-            console.error("Error:", err);
+        .catch(error => {
+            console.error("Error al cargar productos:", error);
             alert("No se pudieron cargar los productos");
         });
 }
@@ -48,6 +48,6 @@ function mostrarProductos(productos) {
     });
 }
 
-function agregarAlCarrito(id) {
-    alert("Producto agregado (ID: " + id + ")");
+function agregarAlCarrito(idProducto) {
+    alert("Producto agregado al carrito (ID: " + idProducto + ")");
 }
