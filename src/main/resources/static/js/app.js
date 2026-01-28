@@ -1,54 +1,95 @@
 
-let carrito = [];
 
-document.addEventListener("DOMContentLoaded", cargarProductos);
+let carrito = [];
+let usuarioLogueado = localStorage.getItem("usuario");
+
+document.addEventListener("DOMContentLoaded", () => {
+    if (usuarioLogueado) {
+        mostrar('tienda');
+        mostrarSesion(true);
+        cargarProductos();
+    } else {
+        mostrar('login');
+    }
+});
+
+function mostrar(vista) {
+    document.querySelectorAll('.vista').forEach(v => v.style.display = 'none');
+    document.getElementById(vista).style.display = 'block';
+}
+
+function login() {
+    const user = document.getElementById("usuario").value;
+    const pass = document.getElementById("password").value;
+
+    if (user && pass) {
+        localStorage.setItem("usuario", user);
+        usuarioLogueado = user;
+        mostrarSesion(true);
+        mostrar('tienda');
+        cargarProductos();
+    } else {
+        alert("Completa los datos");
+    }
+}
+
+function logout() {
+    localStorage.removeItem("usuario");
+    usuarioLogueado = null;
+    carrito = [];
+    mostrarSesion(false);
+    mostrar('login');
+}
+
+function mostrarSesion(logueado) {
+    document.getElementById("btnLogin").style.display = logueado ? "none" : "inline";
+    document.getElementById("btnLogout").style.display = logueado ? "inline" : "none";
+}
 
 function cargarProductos() {
     fetch('/productos')
         .then(res => res.json())
-        .then(data => mostrarProductos(data));
+        .then(data => {
+            const cont = document.getElementById("productos");
+            cont.innerHTML = "";
+            data.forEach(p => {
+                cont.innerHTML += `
+                    <div class="card">
+                        <h3>${p.nombre}</h3>
+                        <p>S/ ${p.precio}</p>
+                        <button onclick="agregar(${p.id}, '${p.nombre}', ${p.precio})">
+                            Agregar
+                        </button>
+                    </div>
+                `;
+            });
+        });
 }
 
-function mostrarProductos(productos) {
-    const contenedor = document.getElementById("productos");
-    contenedor.innerHTML = "";
-
-    productos.forEach(p => {
-        const card = document.createElement("div");
-        card.className = "card";
-
-        card.innerHTML = `
-            <h3>${p.nombre}</h3>
-            <p>Precio: S/ ${p.precio}</p>
-            <p>Stock: ${p.stock}</p>
-            <button onclick="agregarAlCarrito(${p.id}, '${p.nombre}', ${p.precio})">
-                Agregar
-            </button>
-        `;
-
-        contenedor.appendChild(card);
-    });
-}
-
-function agregarAlCarrito(id, nombre, precio) {
+function agregar(id, nombre, precio) {
+    if (!usuarioLogueado) {
+        alert("Debes iniciar sesión para comprar");
+        mostrar('login');
+        return;
+    }
     carrito.push({ id, nombre, precio });
     renderCarrito();
 }
 
 function renderCarrito() {
-    const lista = document.getElementById("carrito");
-    lista.innerHTML = "";
-
+    const ul = document.getElementById("carrito");
+    ul.innerHTML = "";
     carrito.forEach(p => {
-        const li = document.createElement("li");
-        li.textContent = `${p.nombre} - S/ ${p.precio}`;
-        lista.appendChild(li);
+        ul.innerHTML += `<li>${p.nombre} - S/ ${p.precio}</li>`;
     });
 }
 
 function finalizarCompra() {
-    alert("Compra simulada 🎉");
+    if (!usuarioLogueado) {
+        alert("Debes iniciar sesión");
+        return;
+    }
+    alert("Compra realizada 🎉");
     carrito = [];
     renderCarrito();
 }
-

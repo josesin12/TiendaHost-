@@ -2,30 +2,29 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Tienda Online</title>
+    <title>Tienda</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <header>
     <h1>🛒 Mi Tienda</h1>
+    <nav>
+        <a href="index.html">Tienda</a>
+        <a href="info.html">Información</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="login.html" id="loginLink">Login</a>
+        <a href="#" id="logoutLink" onclick="logout()" style="display:none;">Salir</a>
+    </nav>
 </header>
 
-<main class="container">
+<main>
+    <h2>Productos</h2>
+    <div id="productos" class="grid"></div>
 
-    <!-- PRODUCTOS -->
-    <section>
-        <h2>Productos</h2>
-        <div id="productos" class="grid-productos"></div>
-    </section>
-
-    <!-- CARRITO -->
-    <aside class="carrito">
-        <h2>Carrito</h2>
-        <ul id="carrito"></ul>
-        <button onclick="finalizarCompra()">Finalizar compra</button>
-    </aside>
-
+    <h3>Carrito</h3>
+    <ul id="carrito"></ul>
+    <button onclick="finalizarCompra()">Comprar</button>
 </main>
 
 <script src="js/app.js"></script>
