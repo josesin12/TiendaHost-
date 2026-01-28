@@ -1,0 +1,8 @@
+package com.tienda.backend.exception;
+
+public class StockInsuficienteException extends RuntimeException {
+
+    public StockInsuficienteException(String mensaje) {
+        super(mensaje);
+    }
+}
