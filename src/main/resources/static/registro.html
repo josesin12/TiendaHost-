@@ -8,22 +8,30 @@
 <body>
 
 <header>
-    <h1>Registro</h1>
+    <h1>Registro de Usuario</h1>
     <nav>
         <a href="index.html">Tienda</a>
         <a href="info.html">Información</a>
         <a href="nosotros.html">Nosotros</a>
-        <a href="login.html" id="loginLink">Login</a>
-        <a href="#" id="logoutLink" onclick="logout()" style="display:none;">Salir</a>
+        <a href="login.html">Login</a>
     </nav>
 </header>
 
 <main>
-    <input placeholder="Usuario">
-    <input type="password" placeholder="Contraseña">
-    <button onclick="registrar()">Registrarse</button>
+    <div class="form-box">
+        <h2>Crea tu cuenta</h2>
+        <p>
+            Regístrate para acceder a nuestra tienda y disfrutar
+            de una experiencia completa de compra.
+        </p>
+
+        <input placeholder="Usuario">
+        <input type="password" placeholder="Contraseña">
+        <input type="password" placeholder="Confirmar contraseña">
+        <button>Registrarse</button>
+    </div>
 </main>
 
-<script src="js/auth.js"></script>
 </body>
 </html>
+
