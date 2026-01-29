@@ -2,27 +2,31 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>TiendaHost | Productos</title>
 
     <!-- CSS GLOBAL -->
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+<nav class="nav">
+    <div class="nav-container">
+        <a class="logo" href="index.html">TiendaHost</a>
 
-<!-- NAVBAR -->
-<nav>
-    <div class="navbar">
-        <a class="logo" href="/index.html">TiendaHost</a>
-        <div>
-            <a href="/index.html">Inicio</a>
-            <a href="/productos.html" class="active">Productos</a>
-            <a href="/tienda.html">Tienda</a>
-            <a href="/info.html">Información</a>
-            <a href="/nosotros.html">Nosotros</a>
-            <a href="/login.html">Login</a>
+        <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+        <div class="nav-links" id="navLinks">
+            <a href="index.html">Inicio</a>
+            <a href="productos.html">Productos</a>
+            <a href="tienda.html">Tienda</a>
+            <a href="info.html">Información</a>
+            <a href="nosotros.html">Nosotros</a>
+            <a href="login.html">Login</a>
         </div>
     </div>
 </nav>
+<!-- NAVBAR -->
 
 <!-- CONTENIDO -->
 <div class="container">

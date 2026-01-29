@@ -1,5 +1,8 @@
 
 const API_URL = "https://tiendahost-production-2383.up.railway.app";
+function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("active");
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     console.log("app.js cargado");

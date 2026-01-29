@@ -3,16 +3,19 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>TiendaHost | Inicio</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-
-<!-- NAV -->
-<nav>
-    <div class="navbar">
+<nav class="nav">
+    <div class="nav-container">
         <a class="logo" href="index.html">TiendaHost</a>
-        <div>
+
+        <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+        <div class="nav-links" id="navLinks">
             <a href="index.html">Inicio</a>
             <a href="productos.html">Productos</a>
             <a href="tienda.html">Tienda</a>
@@ -22,6 +25,7 @@
         </div>
     </div>
 </nav>
+
 
 <section class="hero">
     <h1>Tecnología para tu día a día</h1>
