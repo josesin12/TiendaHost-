@@ -1,15 +1,13 @@
-// ⚠️ IMPORTANTE
-// API_URL vacío → usa el mismo dominio (Railway o localhost)
-const API_URL = "";
+
+const API_URL = "https://tiendahost-production-2383.up.railway.app";
 
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("app.js cargado correctamente");
+    console.log("app.js cargado");
     cargarProductos();
 });
 
 function cargarProductos() {
     console.log("Cargando productos...");
-
     fetch(`${API_URL}/productos`)
         .then(res => {
             console.log("STATUS:", res.status);
@@ -19,22 +17,20 @@ function cargarProductos() {
             console.log("DATA:", data);
             mostrarProductos(data);
         })
-        .catch(err => {
-            console.error("ERROR FETCH:", err);
-        });
+        .catch(err => console.error("Error cargando productos", err));
 }
 
 function mostrarProductos(productos) {
     const grid = document.getElementById("productos-grid");
 
     if (!grid) {
-        console.error("No existe el contenedor #productos-grid");
+        console.error("No existe #productos-grid");
         return;
     }
 
     grid.innerHTML = "";
 
-    if (!productos || productos.length === 0) {
+    if (productos.length === 0) {
         grid.innerHTML = "<p>No hay productos disponibles.</p>";
         return;
     }
@@ -43,13 +39,20 @@ function mostrarProductos(productos) {
         const card = document.createElement("div");
         card.className = "card";
 
+        const sinStock = p.stock <= 0;
+
         card.innerHTML = `
-            <div class="img-placeholder">Imagen</div>
-            
-            <h3>${p.nombre}</h3>
-            <p>Precio: S/ ${p.precio}</p>
-            <p>Stock: ${p.stock}</p>
-            <button onclick="comprar()">Comprar</button>
+            <img src="/img/laptop.jpg" alt="${p.nombre}">
+            <div class="card-body">
+                <h3>${p.nombre}</h3>
+                <div class="precio">S/ ${p.precio}</div>
+                <div class="stock ${sinStock ? 'no' : 'ok'}">
+                    ${sinStock ? 'Sin stock' : 'Stock: ' + p.stock}
+                </div>
+                <button ${sinStock ? 'disabled' : ''} onclick="comprar()">
+                    Comprar
+                </button>
+            </div>
         `;
 
         grid.appendChild(card);
@@ -58,12 +61,11 @@ function mostrarProductos(productos) {
 
 function comprar() {
     const usuario = localStorage.getItem("usuario");
-
     if (!usuario) {
         alert("Debes iniciar sesión para comprar");
         window.location.href = "/login.html";
         return;
     }
-
-    alert("Producto agregado al carrito (simulado)");
+    alert("Producto agregado al carrito (próximamente)");
 }
+

@@ -25,8 +25,6 @@ public abstract class Producto {
         this.precio = precio;
         this.stock = stock;
     }
-
-    // ---------- GETTERS ----------
     public Long getId() {
         return id;
     }
@@ -43,7 +41,6 @@ public abstract class Producto {
         return stock;
     }
 
-    // ---------- SETTERS (JSON) ----------
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -56,7 +53,6 @@ public abstract class Producto {
         this.stock = stock;
     }
 
-    // ---------- LÓGICA DE NEGOCIO ----------
     public boolean hayStock(int cantidad) {
         return stock >= cantidad;
     }
