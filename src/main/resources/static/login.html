@@ -1,36 +1,31 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>TiendaHost | Login</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<header>
-    <h1>Iniciar Sesión</h1>
-    <nav>
-        <a href="index.html">Tienda</a>
-        <a href="info.html">Información</a>
-        <a href="nosotros.html">Nosotros</a>
-        <a href="login.html">Login</a>
-    </nav>
-</header>
-
-<main>
-    <div class="form-box">
-        <h2>Acceso</h2>
-
-        <input id="correo" type="email" placeholder="Correo electrónico">
-        <input id="password" type="password" placeholder="Contraseña">
-
-        <button onclick="login()">Entrar</button>
-
-        <p>¿No tienes cuenta? <a href="registro.html">Regístrate</a></p>
+<nav>
+    <div class="navbar">
+        <a class="logo" href="index.html">TiendaHost</a>
+        <div>
+            <a href="index.html">Inicio</a>
+            <a href="productos.html">Productos</a>
+            <a href="registro.html">Registro</a>
+        </div>
     </div>
-</main>
+</nav>
 
-<script src="js/auth.js" defer></script>
+<div class="form-box">
+    <h2>Iniciar sesión</h2>
+    <input type="email" id="loginEmail" placeholder="Correo">
+    <input type="password" id="loginPassword" placeholder="Contraseña">
+    <button class="btn" onclick="login()">Entrar</button>
+</div>
+
+<script src="js/auth.js"></script>
 </body>
 </html>
-

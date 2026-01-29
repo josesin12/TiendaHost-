@@ -1,35 +1,64 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Registro</title>
+    <title>TiendaHost | Registro</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<header>
-    <h1>Registro</h1>
-    <nav>
-        <a href="index.html">Tienda</a>
-        <a href="info.html">Información</a>
-        <a href="nosotros.html">Nosotros</a>
-        <a href="login.html">Login</a>
-    </nav>
-</header>
-
-<main>
-    <div class="form-box">
-        <h2>Crear Cuenta</h2>
-
-        <input id="correo" type="email" placeholder="Correo">
-        <input id="password" type="password" placeholder="Contraseña">
-        <input id="confirmar" type="password" placeholder="Confirmar contraseña">
-
-        <button onclick="registrar()">Registrarse</button>
+<!-- NAVBAR -->
+<nav>
+    <div class="navbar">
+        <a class="logo" href="index.html">TiendaHost</a>
+        <div>
+            <a href="index.html">Inicio</a>
+            <a href="productos.html">Productos</a>
+            <a href="tienda.html">Tienda</a>
+            <a href="info.html">Información</a>
+            <a href="nosotros.html">Nosotros</a>
+            <a href="login.html">Login</a>
+        </div>
     </div>
-</main>
+</nav>
 
-<script src="js/auth.js" defer></script>
+<!-- FORMULARIO REGISTRO -->
+<div class="form-box">
+    <h2>Crear cuenta</h2>
+
+    <input
+            type="email"
+            id="regEmail"
+            placeholder="Correo electrónico"
+            required
+    >
+
+    <input
+            type="password"
+            id="regPassword"
+            placeholder="Contraseña"
+            required
+    >
+
+    <input
+            type="password"
+            id="regConfirm"
+            placeholder="Confirmar contraseña"
+            required
+    >
+
+    <button class="btn" onclick="register()">Registrarse</button>
+
+    <p style="text-align:center; margin-top:1rem;">
+        ¿Ya tienes cuenta?
+        <a href="login.html" style="color:#38bdf8; text-decoration:none;">
+            Inicia sesión
+        </a>
+    </p>
+</div>
+
+<script src="js/auth.js"></script>
 </body>
 </html>
 

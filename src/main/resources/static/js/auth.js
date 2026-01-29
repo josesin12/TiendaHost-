@@ -1,43 +1,89 @@
-const API_URL = "https://tiendahost-production-2383.up.railway.app";
+/* ===============================
+   AUTH.JS – TIENDAHOST
+   =============================== */
 
-function registrar() {
-    const correo = document.getElementById("correo").value;
-    const password = document.getElementById("password").value;
-    const confirmar = document.getElementById("confirmar").value;
+/* -------- REGISTRO -------- */
+function register() {
+    const email = document.getElementById("regEmail")?.value.trim();
+    const password = document.getElementById("regPassword")?.value;
+    const confirm = document.getElementById("regConfirm")?.value;
 
-    if (password !== confirmar) {
+    if (!email || !password || !confirm) {
+        alert("Completa todos los campos");
+        return;
+    }
+
+    if (password.length < 6) {
+        alert("La contraseña debe tener al menos 6 caracteres");
+        return;
+    }
+
+    if (password !== confirm) {
         alert("Las contraseñas no coinciden");
         return;
     }
 
-    fetch(`${API_URL}/auth/register`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ correo, password })
-    })
-        .then(res => res.json())
-        .then(() => {
-            alert("Registro exitoso");
-            window.location.href = "login.html";
-        });
+    const user = { email };
+
+    localStorage.setItem("usuario", JSON.stringify(user));
+    alert("Registro exitoso 🎉");
+
+    window.location.href = "login.html";
 }
 
+/* -------- LOGIN -------- */
 function login() {
-    const correo = document.getElementById("correo").value;
-    const password = document.getElementById("password").value;
+    const email = document.getElementById("loginEmail")?.value.trim();
+    const password = document.getElementById("loginPassword")?.value;
 
-    fetch(`${API_URL}/auth/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ correo, password })
-    })
-        .then(res => {
-            if (!res.ok) throw new Error();
-            return res.json();
-        })
-        .then(usuario => {
-            localStorage.setItem("usuario", JSON.stringify(usuario));
-            window.location.href = "index.html";
-        })
-        .catch(() => alert("Credenciales incorrectas"));
+    if (!email || !password) {
+        alert("Ingresa tu correo y contraseña");
+        return;
+    }
+
+    // Simulación de autenticación
+    const user = { email };
+
+    localStorage.setItem("usuario", JSON.stringify(user));
+    alert("Sesión iniciada ✔️");
+
+    window.location.href = "productos.html";
 }
+
+/* -------- LOGOUT -------- */
+function logout() {
+    localStorage.removeItem("usuario");
+    alert("Sesión cerrada");
+    window.location.href = "index.html";
+}
+
+/* -------- VERIFICAR SESIÓN -------- */
+function usuarioLogueado() {
+    return localStorage.getItem("usuario") !== null;
+}
+
+/* -------- PROTEGER COMPRAS -------- */
+function requerirLogin() {
+    if (!usuarioLogueado()) {
+        alert("Debes iniciar sesión para comprar");
+        window.location.href = "login.html";
+        return false;
+    }
+    return true;
+}
+
+/* -------- MOSTRAR USUARIO EN NAV -------- */
+document.addEventListener("DOMContentLoaded", () => {
+    const navRight = document.querySelector(".nav-right");
+
+    if (!navRight) return;
+
+    if (usuarioLogueado()) {
+        const user = JSON.parse(localStorage.getItem("usuario"));
+
+        navRight.innerHTML = `
+      <span style="margin-right:10px;">👤 ${user.email}</span>
+      <a href="#" onclick="logout()">Salir</a>
+    `;
+    }
+});

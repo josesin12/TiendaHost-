@@ -17,15 +17,10 @@ public class ProductoController {
     public ProductoController(ProductoRepository repo) {
         this.repo = repo;
     }
-
-    // LISTAR PRODUCTOS
     @GetMapping
     public List<Producto> listar() {
         return repo.findAll();
     }
-
-    // CREAR PRODUCTO
-
     @PostMapping
     public Producto crear(@RequestBody ProductoSimple producto) {
         return repo.save(producto);
