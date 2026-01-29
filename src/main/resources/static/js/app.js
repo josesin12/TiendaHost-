@@ -71,8 +71,5 @@ function comprar() {
     }
     alert("Producto agregado al carrito (próximamente)");
 }
-function toggleMenu() {
-    document.getElementById("navLinks").classList.toggle("active");
-}
 
 
