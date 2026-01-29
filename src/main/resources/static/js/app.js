@@ -47,7 +47,16 @@ function mostrarProductos(productos) {
         contenedor.appendChild(card);
     });
 }
-
 function agregarAlCarrito(idProducto) {
-    alert("Producto agregado al carrito (ID: " + idProducto + ")");
+    const usuario = localStorage.getItem("usuario");
+
+    if (!usuario) {
+        alert("Debes iniciar sesión para comprar");
+        window.location.href = "login.html";
+        return;
+    }
+
+    alert("Producto agregado al carrito");
 }
+
+

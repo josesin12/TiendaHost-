@@ -8,7 +8,7 @@
 <body>
 
 <header>
-    <h1>Acceso de Usuario</h1>
+    <h1>Iniciar Sesión</h1>
     <nav>
         <a href="index.html">Tienda</a>
         <a href="info.html">Información</a>
@@ -19,23 +19,18 @@
 
 <main>
     <div class="form-box">
-        <h2>Iniciar sesión</h2>
-        <p>
-            Accede con tu cuenta para poder comprar productos,
-            gestionar tu carrito y realizar pedidos.
-        </p>
+        <h2>Acceso</h2>
 
-        <input id="usuario" placeholder="Usuario">
+        <input id="correo" type="email" placeholder="Correo electrónico">
         <input id="password" type="password" placeholder="Contraseña">
+
         <button onclick="login()">Entrar</button>
 
-        <p style="margin-top:1rem;">
-            ¿No tienes cuenta?
-            <a href="registro.html">Regístrate aquí</a>
-        </p>
+        <p>¿No tienes cuenta? <a href="registro.html">Regístrate</a></p>
     </div>
 </main>
 
-<script src="js/auth.js"></script>
+<script src="js/auth.js" defer></script>
 </body>
 </html>
+
