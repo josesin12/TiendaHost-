@@ -2,7 +2,8 @@ function crearProducto() {
     const producto = {
         nombre: document.getElementById('nombre').value,
         precio: Number(document.getElementById('precio').value),
-        stock: Number(document.getElementById('stock').value)
+        stock: Number(document.getElementById('stock').value),
+        imagenUrl: document.getElementById('imagenUrl').value
     };
 
     fetch('/productos', {

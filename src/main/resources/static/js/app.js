@@ -42,7 +42,9 @@ function mostrarProductos(productos) {
         const sinStock = p.stock <= 0;
 
         card.innerHTML = `
-            <img src="/img/laptop.jpg" alt="${p.nombre}">
+           
+            <img src="${p.imagenUrl || '/img/laptop.jpg'}" alt="${p.nombre}">
+
             <div class="card-body">
                 <h3>${p.nombre}</h3>
                 <div class="precio">S/ ${p.precio}</div>

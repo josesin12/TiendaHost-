@@ -15,6 +15,7 @@ public abstract class Producto {
     private String nombre;
     private double precio;
     private int stock;
+    private String imagenUrl;
 
     // 🔹 CONSTRUCTOR VACÍO (OBLIGATORIO PARA JPA + JSON)
     protected Producto() {}
@@ -25,6 +26,14 @@ public abstract class Producto {
         this.precio = precio;
         this.stock = stock;
     }
+    public String getImagenUrl() {
+        return imagenUrl;
+    }
+
+    public void setImagenUrl(String imagenUrl) {
+        this.imagenUrl = imagenUrl;
+    }
+
     public Long getId() {
         return id;
     }
