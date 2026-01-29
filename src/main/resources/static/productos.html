@@ -1,37 +1,49 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>TiendaHost | Productos</title>
+
+    <!-- CSS GLOBAL -->
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
+<!-- NAVBAR -->
 <nav>
     <div class="navbar">
-        <a class="logo" href="index.html">TiendaHost</a>
+        <a class="logo" href="/index.html">TiendaHost</a>
         <div>
-            <a href="index.html">Inicio</a>
-            <a href="productos.html">Productos</a>
-            <a href="tienda.html">Tienda</a>
-            <a href="info.html">Información</a>
-            <a href="nosotros.html">Nosotros</a>
-            <a href="login.html">Login</a>
+            <a href="/index.html">Inicio</a>
+            <a href="/productos.html" class="active">Productos</a>
+            <a href="/tienda.html">Tienda</a>
+            <a href="/info.html">Información</a>
+            <a href="/nosotros.html">Nosotros</a>
+            <a href="/login.html">Login</a>
         </div>
     </div>
 </nav>
+
+<!-- CONTENIDO -->
 <div class="container">
-    <img src="/img/christopher-gower-m_HRfLhgABo-unsplash.jpg" style="width:100%; border-radius:12px; margin-bottom:2rem;">
+
+    <!-- IMAGEN HERO -->
+    <img
+            src="/img/christopher-gower-m_HRfLhgABo-unsplash.jpg"
+            alt="Productos tecnológicos"
+            style="width:100%; border-radius:12px; margin-bottom:2rem;"
+    >
 
     <h2>Nuestros productos</h2>
-    <p>Explora nuestra selección de equipos tecnológicos.</p>
+    <p>Explora nuestra selección de equipos tecnológicos modernos, confiables y al mejor precio.</p>
 
+    <!-- 🔴 ESTE ID ES CLAVE PARA app.js -->
+    <div id="productos-grid" class="productos-grid"></div>
 
-    <div id="listaProductos" class="productos-grid"></div>
 </div>
 
-
+<!-- JS -->
 <script src="/js/app.js" defer></script>
+
 </body>
 </html>
