@@ -2,34 +2,46 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <title>Admin | TiendaHost</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Admin - Tienda</title>
-
     <link rel="stylesheet" href="/css/style.css">
-
 </head>
 <body>
 
-<header>
-    <h1>⚙️ Panel de Administración</h1>
-</header>
 
-<main class="admin">
-    <h2>Agregar Producto</h2>
+<div class="container">
+    <h2>Panel de Administración</h2>
+    <p>Gestiona los productos de la tienda.</p>
 
-    <input id="nombre" placeholder="Nombre del producto">
-    <input id="precio" type="number" placeholder="Precio">
-    <input id="stock" type="number" placeholder="Stock">
-    <input type="text" id="imagenUrl" placeholder="/img/laptop.jpg">
+    <!-- FORMULARIO -->
+    <form id="productoForm" class="form-admin">
+        <input type="hidden" id="productoId">
 
+        <input type="text" id="nombre" placeholder="Nombre del producto" required>
+        <input type="number" id="precio" placeholder="Precio" required>
+        <input type="number" id="stock" placeholder="Stock" required>
+        <input type="text" id="imagen" placeholder="URL de imagen">
 
-    <button onclick="crearProducto()">Crear Producto</button>
+        <button type="submit">Guardar producto</button>
+    </form>
 
-    <h2>Productos</h2>
-    <div id="listaProductos"></div>
-</main>
+    <!-- LISTA -->
+    <h3>Productos registrados</h3>
+
+    <table class="tabla">
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody id="tablaProductos"></tbody>
+    </table>
+</div>
 
 <script src="/js/admin.js"></script>
 </body>
 </html>
+

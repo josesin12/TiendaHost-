@@ -344,6 +344,35 @@ footer {
         gap: 0.8rem;
     }
 }
+.form-admin {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.form-admin button {
+    grid-column: 1 / -1;
+}
+
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabla th, .tabla td {
+    border-bottom: 1px solid #334155;
+    padding: 0.7rem;
+    text-align: center;
+}
+
+.tabla button {
+    margin: 0 0.3rem;
+}
+
+.tabla .danger {
+    background: #dc2626;
+}
 
 
 
