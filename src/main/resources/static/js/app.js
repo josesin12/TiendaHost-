@@ -40,7 +40,7 @@ function mostrarProductos(productos) {
         card.className = "card";
 
         card.innerHTML = `
-      <img src="${p.imagen || '/img/default.jpg'}" alt="${p.nombre}">
+      <img src="${p.imagen || '/img/laptop.jpg'}" alt="${p.nombre}">
       <h3>${p.nombre}</h3>
       <p>Precio: S/ ${p.precio}</p>
       <p>Stock: ${p.stock}</p>
