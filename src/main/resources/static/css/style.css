@@ -373,6 +373,18 @@ footer {
 .tabla .danger {
     background: #dc2626;
 }
+.card button {
+    margin-top: 0.8rem;
+    width: 100%;
+}
+
+.tabla button {
+    padding: 0.3rem 0.6rem;
+}
+
+.danger {
+    background: #dc2626;
+}
 
 
 

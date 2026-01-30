@@ -1,75 +1,59 @@
-
 const API_URL = "https://tiendahost-production-2383.up.railway.app";
 
-
-document.addEventListener("DOMContentLoaded", () => {
-    console.log("app.js cargado");
-    cargarProductos();
-});
+document.addEventListener("DOMContentLoaded", cargarProductos);
 
 function cargarProductos() {
-    console.log("Cargando productos...");
     fetch(`${API_URL}/productos`)
-        .then(res => {
-            console.log("STATUS:", res.status);
-            return res.json();
-        })
-        .then(data => {
-            console.log("DATA:", data);
-            mostrarProductos(data);
-        })
-        .catch(err => console.error("Error cargando productos", err));
+        .then(res => res.json())
+        .then(data => mostrarProductos(data))
+        .catch(err => console.error("Error:", err));
 }
 
 function mostrarProductos(productos) {
-    const grid = document.getElementById("productos-grid");
-
-    if (!grid) {
-        console.error("No existe #productos-grid");
-        return;
-    }
-
+    const grid = document.getElementById("listaProductos");
     grid.innerHTML = "";
-
-    if (productos.length === 0) {
-        grid.innerHTML = "<p>No hay productos disponibles.</p>";
-        return;
-    }
 
     productos.forEach(p => {
         const card = document.createElement("div");
         card.className = "card";
 
-        const sinStock = p.stock <= 0;
-
         card.innerHTML = `
-           
-            <img src="${p.imagenUrl || '/img/laptop.jpg'}" alt="${p.nombre}">
-
-            <div class="card-body">
-                <h3>${p.nombre}</h3>
-                <div class="precio">S/ ${p.precio}</div>
-                <div class="stock ${sinStock ? 'no' : 'ok'}">
-                    ${sinStock ? 'Sin stock' : 'Stock: ' + p.stock}
-                </div>
-                <button ${sinStock ? 'disabled' : ''} onclick="comprar()">
-                    Comprar
-                </button>
-            </div>
-        `;
+      <img src="${p.imagen || 'img/default.jpg'}">
+      <h3>${p.nombre}</h3>
+      <p>Precio: S/ ${p.precio}</p>
+      <button onclick='agregarCarrito(${JSON.stringify(p)})'>
+        Agregar al carrito
+      </button>
+    `;
 
         grid.appendChild(card);
     });
 }
 
-function comprar() {
+/* ================= CARRITO ================= */
+
+function agregarCarrito(producto) {
     const usuario = localStorage.getItem("usuario");
     if (!usuario) {
         alert("Debes iniciar sesión para comprar");
-        window.location.href = "/login.html";
+        window.location.href = "login.html";
         return;
     }
-    alert("Producto agregado al carrito (próximamente)");
+
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+    const existente = carrito.find(p => p.id === producto.id);
+
+    if (existente) {
+        existente.cantidad++;
+    } else {
+        producto.cantidad = 1;
+        carrito.push(producto);
+    }
+
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    alert("Producto agregado al carrito");
 }
+
 
 
